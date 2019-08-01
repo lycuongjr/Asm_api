@@ -15,10 +15,6 @@ public class Category {
     private int status;
 
     public Category() {
-        this.id = Calendar.getInstance().getTimeInMillis();
-        this.createdAtMLS = Calendar.getInstance().getTimeInMillis();
-        this.updatedAtMLS = Calendar.getInstance().getTimeInMillis();
-
     }
 
     public long getId() {
@@ -88,6 +84,8 @@ public class Category {
 
         private Builder() {
             this.id = Calendar.getInstance().getTimeInMillis();
+            this.createdAtMLS = Calendar.getInstance().getTimeInMillis();
+            this.updatedAtMLS = Calendar.getInstance().getTimeInMillis();
             this.status = 1;
         }
 
@@ -131,11 +129,13 @@ public class Category {
         }
 
         public Category build() {
-
             Category category = new Category();
             category.setId(id);
             category.setName(name);
             category.setDescription(description);
+            category.setCreatedAtMLS(createdAtMLS);
+            category.setUpdatedAtMLS(updatedAtMLS);
+            category.setDeletedAtMLS(deletedAtMLS);
             category.setStatus(status);
             return category;
         }

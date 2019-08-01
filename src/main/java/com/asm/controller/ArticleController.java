@@ -20,6 +20,9 @@ public class ArticleController extends HttpServlet {
     private static Gson gson = new Gson();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        req.setAttribute("categories", ofy().load().type(Category.class).list());
         req.getRequestDispatcher("/admin/article/form.jsp").forward(req, resp);
     }
 

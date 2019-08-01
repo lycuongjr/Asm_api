@@ -29,14 +29,14 @@
         <url-pattern>/admin/crawler-source</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>GetCrawlerSource</servlet-name>
-        <servlet-class>com.asm.api.GetCrawlerSource</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GetCrawlerSource</servlet-name>
-        <url-pattern>/admin/crawler-source/get</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>GetCrawlerSource</servlet-name>-->
+<!--        <servlet-class>com.asm.api.GetCrawlerSource</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>GetCrawlerSource</servlet-name>-->
+<!--        <url-pattern>/admin/crawler-source/get</url-pattern>-->
+<!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>AddSpecialController</servlet-name>

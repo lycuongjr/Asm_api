@@ -34,17 +34,17 @@ public class CrawlerSourceApi extends HttpServlet {
                 //load list
                 List<CrawlerSource> list = ofy().load().type(CrawlerSource.class).filter("status != ", 1).list();
                 resp.setStatus(HttpServletResponse.SC_OK);
-                resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("Save atuve success").setData(list).toJsonString());
+                resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("Save CrawlerSource success").setData(list).toJsonString());
             } else {
                 //load detail
                 CrawlerSource crawlerSource = ofy().load().type(CrawlerSource.class).id(Long.parseLong(strId)).now();
                 if (crawlerSource == null) {
                     resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                    resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("article is not found or deleted").toJsonString());
+                    resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("CrawlerSource is not found or deleted").toJsonString());
                     return;
                 }
                 resp.setStatus(HttpServletResponse.SC_OK);
-                resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("article detail").setData(crawlerSource).toJsonString());
+                resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("CrawlerSource detail").setData(crawlerSource).toJsonString());
             }
 
         } catch (Exception ex) {
@@ -68,12 +68,12 @@ public class CrawlerSourceApi extends HttpServlet {
             CrawlerSource crawlerSource = gson.fromJson(content, CrawlerSource.class);
             ofy().save().entity(crawlerSource).now();
             resp.setStatus(HttpServletResponse.SC_CREATED);
-            JsonData jsonData = new JsonData(HttpServletResponse.SC_CREATED, crawlerSource, "Save atube Success");
+            JsonData jsonData = new JsonData(HttpServletResponse.SC_CREATED, crawlerSource, "Save CrawlerSource Success");
             resp.getWriter().println(gson.toJson(jsonData));
 
 
         } catch (Exception ex) {
-            String messageError = String.format("Can not create new aube, error: %s", ex.getMessage());
+            String messageError = String.format("Can not create new CrawlerSource, error: %s", ex.getMessage());
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             JsonData jsonData = new JsonData(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, messageError, null);
             resp.getWriter().println(gson.toJson(jsonData));
@@ -102,9 +102,9 @@ public class CrawlerSourceApi extends HttpServlet {
         CrawlerSource existCrawlerSource = ofy().load().type(CrawlerSource.class).id(Long.parseLong(strId)).now();
         if (existCrawlerSource == null || existCrawlerSource.getStatus() == 0) {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            JsonData jsonData = new JsonData(HttpServletResponse.SC_NOT_FOUND, null, "Atube not found or deleted");
+            JsonData jsonData = new JsonData(HttpServletResponse.SC_NOT_FOUND, null, "CrawlerSource not found or deleted");
             resp.getWriter().println(gson.toJson(jsonData));
-            LOGGER.log(Level.SEVERE, "Atube is not found or deleted!");
+            LOGGER.log(Level.SEVERE, "CrawlerSource is not found or deleted!");
             return;
         }
         try {
@@ -124,7 +124,7 @@ public class CrawlerSourceApi extends HttpServlet {
 
 
         } catch (Exception ex) {
-            String messageError = String.format("Can not update atube %s", ex.getMessage());
+            String messageError = String.format("Can not update CrawlerSource %s", ex.getMessage());
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             JsonData jsonData = new JsonData(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, null, messageError);
             resp.getWriter().println(gson.toJson(jsonData));
@@ -154,7 +154,7 @@ public class CrawlerSourceApi extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
             JsonData jsonData = new JsonData(HttpServletResponse.SC_NOT_FOUND, null, "Atube is not found or deteled!");
             resp.getWriter().println(gson.toJson(jsonData));
-            LOGGER.log(Level.SEVERE, "Atube is not found or deleted");
+            LOGGER.log(Level.SEVERE, "CrawlerSource is not found or deleted");
             return;
         }
         try {
@@ -162,12 +162,12 @@ public class CrawlerSourceApi extends HttpServlet {
             existCrawlerSource.setDeleteaAtMLS(Calendar.getInstance().getTimeInMillis());
             ofy().save().entity(existCrawlerSource).now();
             resp.setStatus(HttpServletResponse.SC_OK);
-            JsonData jsonData = new JsonData(HttpServletResponse.SC_OK, null, "Remove atube success!");
+            JsonData jsonData = new JsonData(HttpServletResponse.SC_OK, null, "Remove CrawlerSource success!");
             resp.getWriter().println(gson.toJson(jsonData));
-            LOGGER.log(Level.SEVERE, "remove atube success");
+            LOGGER.log(Level.SEVERE, "remove CrawlerSource success");
 
         } catch (Exception ex) {
-            String messageError = String.format("Can not remove atube, error %s", ex.getMessage());
+            String messageError = String.format("Can not remove CrawlerSource, error %s", ex.getMessage());
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             JsonData jsonData = new JsonData(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, null, messageError);
             resp.getWriter().println(gson.toJson(jsonData));

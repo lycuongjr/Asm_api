@@ -10,7 +10,6 @@ import java.util.Calendar;
 public class Article {
 
     @Id
-    private long id;
     private String url;
     private String title;
     private String description;
@@ -26,11 +25,7 @@ public class Article {
     private Ref<Category> category;
 
     public Article() {
-        this.id = 1;
-        this.createdAtMLS = Calendar.getInstance().getTimeInMillis();
-        this.updatedAtMLS = Calendar.getInstance().getTimeInMillis();
     }
-
 
     public Ref<Category> getCategory() {
         return category;
@@ -120,14 +115,6 @@ public class Article {
         this.sourceId = sourceId;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public static final class Builder {
         Ref<Category> category;
         private String url;
@@ -140,11 +127,9 @@ public class Article {
         private long updatedAtMLS;
         private long deletedAtMLS;
         private int status;
-        private Builder(){
 
-            this.status = 1;
+        private Builder() {
         }
-
 
         public static Builder anArticle() {
             return new Builder();
@@ -213,11 +198,13 @@ public class Article {
             article.setContent(content);
             article.setAuthor(author);
             article.setSourceId(sourceId);
+            article.setCreatedAtMLS(createdAtMLS);
+            article.setUpdatedAtMLS(updatedAtMLS);
+            article.setDeletedAtMLS(deletedAtMLS);
             article.setStatus(status);
             article.setCategory(category);
             return article;
         }
-
-        }
     }
+}
 

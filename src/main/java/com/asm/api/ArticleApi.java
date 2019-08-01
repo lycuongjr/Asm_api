@@ -34,6 +34,7 @@ public class ArticleApi extends HttpServlet {
                 List<Article> list = ofy().load().type(Article.class).filter("status != ", 1).list();
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.getWriter().println(new JsonData().setStatus(HttpServletResponse.SC_OK).setMessage("Save Aricle success").setData(list).toJsonString());
+
             }else {
                 //load detail
                 Article article = ofy().load().type(Article.class).id(Long.parseLong(strId)).now();
