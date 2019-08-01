@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+    <cron>
+        <url>/taskqueue/add</url>
+        <target>tube</target>
+        <description>daily summary job</description>
+        <schedule>every 60 minutes</schedule>
+    </cron>
+    <cron>
+        <url>/taskqueue/get</url>
+        <target>tube</target>
+        <description>get article detail</description>
+        <schedule>every 5 minutes</schedule>
+    </cron>
+</cronentries>
